@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: foo-example-knative
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      build:
+        serviceAccountName: build-bot
+        source:
+          git:
+            url: https://github.com/flavio-fernandes/flaskapp
+            revision: knativeDemo
+        template:
+          name: kaniko
+          arguments:
+          - name: IMAGE
+            value: &image docker.io/flaviofdocker/foo
+      revisionTemplate:
+        spec:
+          container:
+            image: *image
+            env:
+              - name: TARGET
+                value: "Nice, you got an image auto built"

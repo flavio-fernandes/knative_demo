@@ -1,0 +1,3 @@
+Host github.com
+   User flavio-fernandes
+   IdentityFile ~/.ssh/id_rsa_github

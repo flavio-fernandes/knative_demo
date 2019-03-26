@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: foo-example-knative
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: gcr.io/flaviof-knative/foo
+            env:
+              - name: TARGET
+                value: "Hello from foo on K8 deployed by knative"

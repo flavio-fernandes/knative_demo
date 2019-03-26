@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "809b4c0f-eae5-4db7-8340-3ca91c164ad0",
+		"name": "Knative Demo",
+		"description": "Dynamic DNS update of my domain at google domains\nhttps://domains.google.com/m/registrar/\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "update dynamic dns",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Postman/6.7.4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://domains.google.com/nic/update?hostname={{hostname}}&myip=X",
+					"protocol": "https",
+					"host": [
+						"domains",
+						"google",
+						"com"
+					],
+					"path": [
+						"nic",
+						"update"
+					],
+					"query": [
+						{
+							"key": "hostname",
+							"value": "{{hostname}}"
+						},
+						{
+							"key": "myip",
+							"value": "X"
+						}
+					]
+				},
+				"description": "update dynamic dns for domain, based on environment"
+			},
+			"response": []
+		},
+		{
+			"name": "connect foo application",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"value": "foo-example-knative.default.example.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://foo.flaviof.dev/json?delay=250",
+					"protocol": "http",
+					"host": [
+						"foo",
+						"flaviof",
+						"dev"
+					],
+					"path": [
+						"json"
+					],
+					"query": [
+						{
+							"key": "delay",
+							"value": "250"
+						},
+						{
+							"key": "boom",
+							"value": "yes",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "blue-green demo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "blue-green-demo.default.example.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://foo.flaviof.dev/",
+					"protocol": "http",
+					"host": [
+						"foo",
+						"flaviof",
+						"dev"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GREEN blue-green demo v2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"type": "text",
+						"value": "v2.blue-green-demo.default.example.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://foo.flaviof.dev/",
+					"protocol": "http",
+					"host": [
+						"foo",
+						"flaviof",
+						"dev"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Explicitly ask for green deployment on blue-green deployment"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6c0cfd41-e0df-4cc1-a781-4ec0a0d4f8ac",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b376c089-0261-4181-8336-c446592b3c75",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

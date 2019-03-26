@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: foo-example
+  namespace: default
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: foo-example
+    spec:
+      containers:
+      - name: foo
+        image: gcr.io/flaviof-knative/foo:latest
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: TARGET
+          value: "Old school deployment"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: foo-example
+  name: foo-np
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: foo-example
+  sessionAffinity: None
+  type: NodePort
