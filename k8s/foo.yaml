@@ -13,6 +13,8 @@ spec:
     spec:
       containers:
       - name: foo
+        # NOTE: Make sure to use the name of your $PROJECT here,
+        #       which is what was provided when doing a docker push
         image: gcr.io/flaviof-knative/foo:latest
         ports:
         - containerPort: 5000

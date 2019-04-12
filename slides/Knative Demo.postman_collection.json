@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "809b4c0f-eae5-4db7-8340-3ca91c164ad0",
 		"name": "Knative Demo",
-		"description": "Dynamic DNS update of my domain at google domains\nhttps://domains.google.com/m/registrar/\n",
+		"description": "Interact with app ran mentioned in flaviof.com/knative\n\nDynamic DNS update of my domain at google domains\nhttps://domains.google.com/m/registrar/\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

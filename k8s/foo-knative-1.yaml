@@ -9,6 +9,8 @@ spec:
       revisionTemplate:
         spec:
           container:
+            # NOTE: Make sure to use the name of your $PROJECT here,
+            #       which is what was provided when doing a docker push
             image: gcr.io/flaviof-knative/foo
             env:
               - name: TARGET
