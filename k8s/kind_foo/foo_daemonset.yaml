@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: foo-example
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: foo-example
+  template:
+    metadata:
+      labels:
+        app: foo-example
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: foo
+        image: localhost/foo:dev
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: TARGET
+          value: "This is from stateful set"

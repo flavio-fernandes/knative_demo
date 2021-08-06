@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo-example
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: foo-example
+  template:
+    metadata:
+      labels:
+        app: foo-example
+    spec:
+      containers:
+      - name: foo
+        image: localhost/foo:dev
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: TARGET
+          value: "Old school deployment"
